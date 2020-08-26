@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 
+
 def map_for_dict_Gender(Gender):
     dict_Gender = {'Male': 0, 'Female': 1}
     res = dict_Gender.get(Gender)
@@ -44,42 +45,14 @@ def f_VehUsage_Professional_run(VehUsage):
         VehUsage_Professional_run = 0
     return VehUsage_Professional_run
 
-# def f_DrivAgeSq(DrivAge):
-#     return DrivAge**2
-
-# def return_Data_Frame():
-#     columns_list = [
-#         'LicAge',
-#         'Gender',
-#         'MariStat',
-#         'DrivAge',
-#         'HasKmLimit',
-#         'BonusMalus',
-#         'OutUseNb',
-#         'RiskArea',
-#         'VehUsg_Private',
-#         'VehUsg_Private+trip to office',
-#         'VehUsg_Professional',
-#         'VehUsg_Professional run',
-#         'SocioCateg_CSP1',
-#         'SocioCateg_CSP2',
-#         'SocioCateg_CSP3',
-#         'SocioCateg_CSP6',
-#         'SocioCateg_CSP7',
-#         'DrivAgeSq'
-#     ]
-#     return pd.DataFrame(
-#         [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
-#         column_names=columns)
 
 def process_input(json_input):
-
-    columns_list =['LicAge', 'Gender', 'MariStat', 'DrivAge', 'HasKmLimit', 'BonusMalus',
-     'OutUseNb', 'RiskArea', 'VehUsage_Private',
-     'VehUsage_Private+trip to office', 'VehUsage_Professional',
-     'VehUsage_Professional run', 'SocioCateg_CSP1', 'SocioCateg_CSP2',
-     'SocioCateg_CSP3', 'SocioCateg_CSP4', 'SocioCateg_CSP5',
-     'SocioCateg_CSP6', 'SocioCateg_CSP7', 'DrivAgeSq']
+    columns_list = ['LicAge', 'Gender', 'MariStat', 'DrivAge', 'HasKmLimit', 'BonusMalus',
+                    'OutUseNb', 'RiskArea', 'VehUsage_Private',
+                    'VehUsage_Private+trip to office', 'VehUsage_Professional',
+                    'VehUsage_Professional run', 'SocioCateg_CSP1', 'SocioCateg_CSP2',
+                    'SocioCateg_CSP3', 'SocioCateg_CSP4', 'SocioCateg_CSP5',
+                    'SocioCateg_CSP6', 'SocioCateg_CSP7', 'DrivAgeSq']
 
     LicAge = json_input["LicAge"]
     Gender = map_for_dict_Gender(json_input["Gender"])
@@ -94,7 +67,6 @@ def process_input(json_input):
     VehUsg_Professional = f_VehUsage_Professional(json_input["VehUsage"])
     VehUsg_Professional_run = f_VehUsage_Professional_run(json_input["VehUsage"])
 
-
     CSP1 = 0
     CSP2 = 0
     CSP3 = 0
@@ -105,15 +77,12 @@ def process_input(json_input):
 
     DrivAgeSq = json_input["DrivAge"] ** 2
 
-
-
-    data_list=[(LicAge, Gender,  MariStat, DrivAge,
-               HasKmLimit, BonusMalus, OutUseNb, RiskArea,
-               VehUsg_Private, VehUsg_Private_trip_to_office,
-               VehUsg_Professional, VehUsg_Professional_run,
-               CSP1, CSP2, CSP3, CSP4, CSP5, CSP6, CSP7,
-               DrivAgeSq)]
-
+    data_list = [(LicAge, Gender, MariStat, DrivAge,
+                  HasKmLimit, BonusMalus, OutUseNb, RiskArea,
+                  VehUsg_Private, VehUsg_Private_trip_to_office,
+                  VehUsg_Professional, VehUsg_Professional_run,
+                  CSP1, CSP2, CSP3, CSP4, CSP5, CSP6, CSP7,
+                  DrivAgeSq)]
 
     print(data_list)
 

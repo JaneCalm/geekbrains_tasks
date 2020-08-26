@@ -18,7 +18,7 @@ booster = xgb.Booster()
 booster.load_model('models/xgb_ClaimInd_model')
 xgb_ClaimInd_model._Booster = booster
 
-xgb_ClaimInd_model._le = LabelEncoder().fit([0,1,2,3,4,5,6,7,8,9,10])
+xgb_ClaimInd_model._le = LabelEncoder().fit([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
 # Logging
 handler = RotatingFileHandler('app.log', maxBytes=100000, backupCount=5)
@@ -26,14 +26,13 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 logger.addHandler(handler)
 
-@app.route("/")
 
+@app.route("/")
 def index():
     return "EKalmina API"
 
 
 @app.route("/predict", methods=['POST'])
-
 def predict():
     json_input = request.get_json(force=True)
 
@@ -58,7 +57,6 @@ def predict():
         'ClaimInd': ClaimInd
     }
 
-
     # Response logging
     end_prediction = time()
     duration = round(end_prediction - start_prediction, 6)
@@ -66,6 +64,7 @@ def predict():
     logger.info(f'{current_datatime} predicted for {duration} msec: {result}\n')
 
     return jsonify(result)
+
 
 # @app.errorhandler(Exception)
 # def exceptions(e):
