@@ -66,18 +66,19 @@ def predict():
     return jsonify(result)
 
 
-# @app.errorhandler(Exception)
-# def exceptions(e):
-#     current_datatime = strftime('[%Y-%b-%d %H:%M:%S]')
-#     error_message = traceback.format_exc()
-#     logger.error('%s %s %s %s %s 5xx INTERNAL SERVER ERROR\n%s',
-#                  current_datatime,
-#                  request.remote_addr,
-#                  request.method,
-#                  request.scheme,
-#                  request.full_path,
-#                  error_message)
-#     return jsonify({'error': 'Internal Server Error'}), 500
+@app.errorhandler(Exception)
+def exceptions(e):
+    current_datatime = strftime('[%Y-%b-%d %H:%M:%S]')
+    error_message = traceback.format_exc()
+    logger.error('%s %s %s %s %s 5xx INTERNAL SERVER ERROR\n%s',
+                 current_datatime,
+                 request.remote_addr,
+                 request.method,
+                 request.scheme,
+                 request.full_path,
+                 error_message)
+    return jsonify({'error': 'Internal Server Error'}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
