@@ -29,7 +29,7 @@ logger.addHandler(handler)
 @app.route("/")
 
 def index():
-    return "RenataTNT API"
+    return "EKalmina API"
 
 
 @app.route("/predict", methods=['POST'])
